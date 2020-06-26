@@ -1,13 +1,15 @@
 const keys = require("./keys")
+
+// Express App Setup
 const express = require("express")
-// const bodyParsor = require("body-parser")
+const bodyParser = require("body-parser")
 const cors = require("cors")
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-// Postgres Client setup
+// Postgres Client Setup
 const { Pool } = require("pg")
 const pgClient = new Pool({
   user: keys.pgUser,
@@ -17,11 +19,11 @@ const pgClient = new Pool({
   port: keys.pgPort,
 })
 
-pgClient.on("error", () => console.log("Lost Postgres Connection"))
-
-pgClient
-  .query("CREATE TABLE IF NOT EXISTS values (number INT)")
-  .catch((error) => console.log(error))
+pgClient.on("connect", () => {
+  pgClient
+    .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+    .catch((err) => console.log(err))
+})
 
 // Redis Client Setup
 const redis = require("redis")
@@ -45,7 +47,7 @@ app.get("/values/all", async (req, res) => {
 })
 
 app.get("/values/current", async (req, res) => {
-  redisClient.hgetall("values", (error, values) => {
+  redisClient.hgetall("values", (err, values) => {
     res.send(values)
   })
 })
@@ -57,11 +59,13 @@ app.post("/values", async (req, res) => {
     return res.status(422).send("Index too high")
   }
 
-  redisClient.hset("values", index, "Nothing yet")
+  redisClient.hset("values", index, "Nothing yet!")
   redisPublisher.publish("insert", index)
   pgClient.query("INSERT INTO values(number) VALUES($1)", [index])
 
   res.send({ working: true })
 })
 
-app.listen(5000, (err) => console.log("Listeniong on Port 5000"))
+app.listen(5000, (err) => {
+  console.log("Listening")
+})
