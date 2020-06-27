@@ -15,11 +15,11 @@ after_success:
   - docker build -t jameem/multi-server ./server
   - docker build -t jameem/multi-worker ./worker
 
-# Log in to docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-# Push to docker hub
-- docker push jameem/multi-client
-- docker push jameem/multi-nginx
-- docker push jameem/multi-server
-- docker push jameem/multi-worker
+  # Push to docker hub
+  - docker push jameem/multi-client
+  - docker push jameem/multi-nginx
+  - docker push jameem/multi-server
+  - docker push jameem/multi-worker
