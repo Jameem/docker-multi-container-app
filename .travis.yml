@@ -8,3 +8,18 @@ before_install:
 
 script:
   - docker run -e CI=true jameem/react-test npm run test
+
+after_success:
+  - docker build -t jameem/multi-client ./client
+  - docker build -t jameem/multi-nginx ./nginx
+  - docker build -t jameem/multi-server ./server
+  - docker build -t jameem/multi-worker ./worker
+
+# Log in to docker CLI
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+# Push to docker hub
+- docker push jameem/multi-client
+- docker push jameem/multi-nginx
+- docker push jameem/multi-server
+- docker push jameem/multi-worker
