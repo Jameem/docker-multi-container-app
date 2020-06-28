@@ -18,6 +18,19 @@
       "image": "jameem/multi-worker",
       "hostname": "worker",
       "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "jameem/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "contanierPort": 80
+        }
+      ],
+      "Links": ["client", "server"]
     }
   ]
 }
