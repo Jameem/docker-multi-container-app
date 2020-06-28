@@ -4,7 +4,20 @@
     {
       "name": "client",
       "image": "jameem/multi-client",
-      "hostname": "client"
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "jameem/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "jameem/multi-worker",
+      "hostname": "worker",
+      "essential": false
     }
   ]
 }
