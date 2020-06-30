@@ -25,6 +25,7 @@ after_success:
   - docker push jameem/multi-worker
 
 deploy:
+  edge: true
   provider: elasticbeanstalk
   region: ap-south-1
   app: multi-docker
