@@ -1,2 +1,3 @@
 # docker-multi-container-app
-Exploring multiple  docker containers
+
+Exploring multiple docker containers
