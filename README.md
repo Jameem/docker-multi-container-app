@@ -6,7 +6,7 @@ The project is meant to explore docker with multiple containers and deploy to aw
 
 ## Dependencies
 
-Install these prerequisites to follow along
+Install these prerequisites to follow along,
 
 - NPM: https://nodejs.org
 - Docker: https://www.docker.com/
