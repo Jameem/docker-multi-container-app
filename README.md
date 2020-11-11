@@ -2,7 +2,7 @@
 
 Exploring multiple docker containers...
 
-The project is meant to explore docker with multiple containers and deploy to aws with travis cli.
+The project is meant to explore docker with multiple containers and deploy to aws with travis CI.
 
 ## Dependencies
 
