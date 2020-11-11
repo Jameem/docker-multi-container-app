@@ -1,8 +1,8 @@
 # docker-multi-container-app
 
-Exploring multiple docker containers
+Exploring multiple docker containers...
 
-The project is meant to explore docker with multiple containers and deploy to aws via travis cli.
+The project is meant to explore docker with multiple containers and deploy to aws with travis cli.
 
 ## Dependencies
 
